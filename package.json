@@ -2,13 +2,16 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "lerna:bootstrap": "lerna bootstrap",
-    "lerna:import": "lerna import",
-    "lerna:create": "lerna create",
-    "gulp": "gulp"
+    "bootstrap": "lerna bootstrap",
+    "import": "lerna import",
+    "lint:convert": "lerna link convert",
+    "create": "lerna create",
+    "build": "lerna run build",
+    "package:init": "./scripts/init-package.sh"
   },
   "devDependencies": {
     "gulp": "^4.0.2",
-    "lerna": "^3.22.1"
+    "lerna": "^3.22.1",
+    "typescript": "^4.0.2"
   }
 }
