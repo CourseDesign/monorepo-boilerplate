@@ -13,11 +13,13 @@ const packagePath = required(process.argv[3]);
 
 fs.readdirSync(rootPath).forEach(file => {
   if (/tsconfig(\.\w+)?\.json/.test(file)) {
-    const packageConfig = require(`${packagePath}/${file}`);
-    if (packageConfig == null) return;
-
     const rootConfig = require(`${rootPath}/${file}`);
-    if (rootConfig == null) return;
+
+    let packageConfig = {};
+    try {
+      packageConfig = require(`${packagePath}/${file}`);
+    } catch (e) {
+    }
 
     const merged = { ...packageConfig, ...rootConfig };
 

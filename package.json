@@ -4,7 +4,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "import": "lerna import",
-    "lint:convert": "lerna link convert",
+    "link:convert": "lerna link convert",
     "create": "lerna create",
     "build": "lerna run build",
     "package:init": "./scripts/init-package.sh"
