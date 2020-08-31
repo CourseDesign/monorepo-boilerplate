@@ -22,21 +22,30 @@ echo "🚀 Start to creat new package ${packageName} in ${packageLocation}..."
 # 패키지 생성
 echo "⚙️ Init ${packageName}"
 
-npm run create "${packageName}" "${packageLocation}"
+mkdir "${packageLocation}"
+cd "${packageLocation}" || exit
+mkdir "${packageName}"
+cd "${packageName}" || exit
 
-echo "✅ Finish"
-
-# 패키지 위치 저장
-cd "${packageLocation}/${packageName}" || exit
 packagePath=$(pwd)
 
-cd "${rootPath}" || exit
+npm init
+
+echo "✅ Finish"
 
 # Typescript 세팅
 sh "${scriptPath}/set-up-typescript.sh" "${rootPath}" "${packagePath}"
 
 # package.json 수정
-sh "${scriptPath}/add-default-script-in-package" "${templatePath}/default" "${packagePath}" "${scriptPath}"
+sh "${scriptPath}/add-default-script-in-package.sh" "${templatePath}/default" "${packagePath}" "${scriptPath}"
+
+# 기본 파일 세팅
+echo "⚙️ set up default file"
+
+mkdir lib
+touch lib/index.ts
+
+echo "✅ Finish"
 
 # npm ignore
 echo "⚙️ copy npm ignore"

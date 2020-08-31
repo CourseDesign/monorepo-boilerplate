@@ -11,14 +11,16 @@ function required(value) {
 const rootPath = required(process.argv[2]);
 const packagePath = required(process.argv[3]);
 
-const diff = path.relative(packagePath, rootPath);
-
 fs.readdirSync(rootPath).forEach(file => {
   if (/tsconfig(\.\w+)?\.json/.test(file)) {
-    const tsconfig = {
-      extends: `${diff}/${file}`
-    };
+    const packageConfig = require(`${packagePath}/${file}`);
+    if (packageConfig == null) return;
 
-    fs.writeFileSync(`${packagePath}/${file}`, JSON.stringify(tsconfig, null, 2) + '\n');
+    const rootConfig = require(`${rootPath}/${file}`);
+    if (rootConfig == null) return;
+
+    const merged = { ...packageConfig, ...rootConfig };
+
+    fs.writeFileSync(`${packagePath}/${file}`, JSON.stringify(merged, null, 2) + '\n');
   }
 });

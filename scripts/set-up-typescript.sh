@@ -12,7 +12,9 @@ fi
 
 rootPath=$1
 packagePath=$2
+
 scriptPath="${rootPath}/scripts"
+templatePath="${rootPath}/templates/default"
 
 cd "${packagePath}" || exit
 
@@ -30,6 +32,7 @@ echo "✅ Finish"
 echo "⚙️ Extend all tsconfig"
 
 node "${scriptPath}/extend-tsconfigs.js" "${rootPath}" "${packagePath}"
+node "${scriptPath}/merge-tsconfigs.js" "${templatePath}" "${packagePath}"
 
 echo "✅ Finish"
 
