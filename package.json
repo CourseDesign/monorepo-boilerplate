@@ -3,10 +3,14 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
+    "bootstrap:hoist": "lerna bootstrap --hoist",
     "import": "lerna import",
+    "add": "lerna add",
     "link:convert": "lerna link convert",
     "create": "lerna create",
     "build": "lerna run build",
+    "clean": "lerna run clean",
+    "package:publish": "lerna publish",
     "package:init": "./scripts/init-package.sh"
   },
   "devDependencies": {
@@ -14,5 +18,10 @@
     "gulp": "^4.0.2",
     "lerna": "^3.22.1",
     "typescript": "^4.0.2"
+  },
+  "dependencies": {
+    "console-test": "file:packages/console-test",
+    "print-a": "file:packages/print-a",
+    "print-b": "file:packages/print-b"
   }
 }
