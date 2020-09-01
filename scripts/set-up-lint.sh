@@ -14,7 +14,6 @@ rootPath=$1
 packagePath=$2
 
 scriptPath="${rootPath}/scripts"
-templatePath="${rootPath}/templates/default"
 
 cd "${packagePath}" || exit
 
@@ -24,7 +23,6 @@ echo "🚀️ Set up lint"
 echo "⚙️ Install lint"
 
 npm i eslint --save-dev
-npm i @typescript-eslint/eslint-plugin @typescript-eslint/parser --save-dev
 
 echo "✅ Finish"
 
