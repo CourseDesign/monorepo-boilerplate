@@ -25,6 +25,8 @@ cd "${targetPath}" || exit
 echo "🚀️ Set up default script in package"
 
 node "${scriptPath}/copy-package-element.js" "${sourcePath}/package.json" "${targetPath}/package.json" "main"
+node "${scriptPath}/copy-package-element.js" "${sourcePath}/package.json" "${targetPath}/package.json" "types"
+
 node "${scriptPath}/copy-package-element.js" "${sourcePath}/package.json" "${targetPath}/package.json" "scripts.build"
 node "${scriptPath}/copy-package-element.js" "${sourcePath}/package.json" "${targetPath}/package.json" "scripts.clean"
 node "${scriptPath}/copy-package-element.js" "${sourcePath}/package.json" "${targetPath}/package.json" "scripts.compile"
