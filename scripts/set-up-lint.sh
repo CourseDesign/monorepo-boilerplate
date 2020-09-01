@@ -24,13 +24,12 @@ echo "🚀️ Set up lint"
 echo "⚙️ Install lint"
 
 npm i eslint --save-dev
+npm i @typescript-eslint/eslint-plugin @typescript-eslint/parser --save-dev
 
 echo "✅ Finish"
 
 # lint 설정
 node "${scriptPath}/extend-eslint.js" "${rootPath}" "${packagePath}"
 cp "${rootPath}/.eslintignore" "${packagePath}/.eslintignore"
-
-node "${scriptPath}/add-eslint-parse-option.js" "${rootPath}" "${packagePath}"
 
 echo "🎉 Finish to set up lint"
