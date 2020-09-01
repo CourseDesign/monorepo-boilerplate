@@ -5,7 +5,8 @@
     "build": "npm run clean && npm run compile",
     "clean": "rm -rf ./dist",
     "compile": "tsc",
-    "prepublishOnly": "npm run build",
-    "test": ""
+    "test": "",
+    "lint": "",
+    "prepublishOnly": "npm run build"
   }
 }

@@ -28,7 +28,8 @@ node "${scriptPath}/copy-package-element.js" "${sourcePath}/package.json" "${tar
 node "${scriptPath}/copy-package-element.js" "${sourcePath}/package.json" "${targetPath}/package.json" "scripts.build"
 node "${scriptPath}/copy-package-element.js" "${sourcePath}/package.json" "${targetPath}/package.json" "scripts.clean"
 node "${scriptPath}/copy-package-element.js" "${sourcePath}/package.json" "${targetPath}/package.json" "scripts.compile"
-node "${scriptPath}/copy-package-element.js" "${sourcePath}/package.json" "${targetPath}/package.json" "scripts.prepublishOnly"
 node "${scriptPath}/copy-package-element.js" "${sourcePath}/package.json" "${targetPath}/package.json" "scripts.test"
+node "${scriptPath}/copy-package-element.js" "${sourcePath}/package.json" "${targetPath}/package.json" "scripts.lint"
+node "${scriptPath}/copy-package-element.js" "${sourcePath}/package.json" "${targetPath}/package.json" "scripts.prepublishOnly"
 
 echo "🎉 Finish to set up default script in package"
