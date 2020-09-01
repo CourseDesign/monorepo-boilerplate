@@ -33,6 +33,8 @@ jobs:
       - name: Lint
         run: npm run lint
       - name: Build
-        run: npm run build:production:all
+        run: npm run build
+        env:
+          NODE_ENV: production
       - name: Test
         run: npm run test
