@@ -4,8 +4,8 @@
   "scripts": {
     "build": "npm run clean && npm run compile",
     "clean": "rm -rf ./dist",
-    "compile": "tsc",
-    "prepublishOnly": "npm run build",
+    "compile": "gulp",
+    "prepublishOnly": "cross-env NODE_ENV=production npm run build",
     "test": ""
   }
 }
