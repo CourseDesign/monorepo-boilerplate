@@ -45,13 +45,16 @@ sh "${scriptPath}/set-up-gulp.sh" "${rootPath}" "${packagePath}"
 # lint 세팅
 sh "${scriptPath}/set-up-lint.sh" "${rootPath}" "${packagePath}"
 
+# jest 세팅
+sh "${scriptPath}/set-up-jest.sh" "${rootPath}" "${packagePath}"
+
 # package.json 수정
 sh "${scriptPath}/add-default-script-in-package.sh" "${templatePath}" "${packagePath}" "${scriptPath}"
 
 # 기본 파일 세팅
 echo "⚙️ set up default file"
 
-copy "${templatePath}/lib" "${packagePath}"
+cp -r "${templatePath}/lib" "${packagePath}"
 
 echo "✅ Finish"
 
