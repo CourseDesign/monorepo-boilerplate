@@ -24,6 +24,8 @@ echo "⚙️ Install lint"
 
 npm i eslint --save-dev
 
+echo "✅ Finish"
+
 # tsconfig project 추가
 echo "⚙️ Add project"
 
