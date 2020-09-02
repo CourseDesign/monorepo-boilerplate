@@ -24,6 +24,11 @@ echo "⚙️ Install lint"
 
 npm i eslint --save-dev
 
+# tsconfig project 추가
+echo "⚙️ Add project"
+
+node "${scriptPath}/add-root-tsconfig" "${rootPath}" "${packagePath}"
+
 echo "✅ Finish"
 
 # lint 설정
