@@ -21,6 +21,7 @@ cd "${packagePath}" || exit
 echo "⚙️ Install jest"
 
 npm i jest ts-jest --save-dev
+npm i @types/jest --save-dev
 
 echo "✅ Finish"
 
