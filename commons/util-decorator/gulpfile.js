@@ -19,17 +19,16 @@ function getTsconfigName() {
 }
 
 function getFinalTsConfig(config, currentPath) {
-  const parentConfigPath = config['extends'];
+  const { extends: parentConfigPath, ...rest } = config;
 
   if (parentConfigPath) {
     const finalParentConfigPath = path.join(currentPath, parentConfigPath);
     const parentProject = ts.createProject(finalParentConfigPath);
 
     const parentConfig = getFinalTsConfig(parentProject.rawConfig, parentProject.projectDirectory);
-    const { extends: _extends, ...rest } = config;
     return merge(parentConfig, rest);
   }
-  return config;
+  return rest;
 }
 
 function getTsconfig(tsProject) {
