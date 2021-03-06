@@ -67,10 +67,12 @@ function compile() {
 }
 
 function compression() {
+  const isProduction = process.env.NODE_ENV === 'production';
+
   return src(path.join(tsconfig.compilerOptions.outDir, '**/*.js'), { sourcemaps: true, since: lastRun(compression) })
-    .pipe(sourcemaps.init())
-    .pipe(gulpif(process.env.NODE_ENV === 'production', uglify()))
-    .pipe(sourcemaps.write('.'))
+    .pipe(gulpif(isProduction, sourcemaps.init()))
+    .pipe(gulpif(isProduction, uglify()))
+    .pipe(gulpif(isProduction, sourcemaps.write('.')))
     .pipe(dest(tsconfig.compilerOptions.outDir));
 }
 
