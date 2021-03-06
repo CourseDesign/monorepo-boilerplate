@@ -1,11 +1,22 @@
+const fs = require('fs');
 const { src, dest, series } = require('gulp');
 const gulpif = require('gulp-if');
 const ts = require('gulp-typescript');
 const uglify = require('gulp-uglify');
 
-const tsProject = ts.createProject(
-  process.env.NODE_ENV ? `tsconfig.${process.env.NODE_ENV.toLowerCase()}.json` : 'tsconfig.json'
-);
+function getTsconfigName() {
+  if (!process.env.NODE_ENV) return 'tsconfig.json';
+
+  const specificConfig = `tsconfig.${process.env.NODE_ENV.toLowerCase()}.json`;
+  if (fs.existsSync(specificConfig)) {
+    return specificConfig;
+  }
+
+  return 'tsconfig.json';
+}
+
+
+const tsProject = ts.createProject(getTsconfigName());
 
 function compile() {
   return tsProject.src()
@@ -19,6 +30,6 @@ function compression() {
     .pipe(dest('dist'));
 }
 
-const build = series(compile, compression)
+const build = series(compile, compression);
 
 exports.default = series(build);
