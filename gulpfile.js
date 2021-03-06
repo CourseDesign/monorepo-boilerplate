@@ -1,8 +1,11 @@
 const fs = require('fs');
+const path = require("path");
+
 const { src, dest, series, lastRun } = require('gulp');
 const gulpif = require('gulp-if');
 const ts = require('gulp-typescript');
 const uglify = require('gulp-uglify');
+const merge = require('deepmerge')
 
 function getTsconfigName() {
   if (!process.env.NODE_ENV) return 'tsconfig.json';
@@ -15,14 +18,28 @@ function getTsconfigName() {
   return 'tsconfig.json';
 }
 
-function getTsIncludePath() {
-  return tsProject.config.include ?? 'lib';
+function getFinalTsConfig(config, currentPath) {
+  const parentConfigPath = config['extends'];
+
+  if (parentConfigPath) {
+    const finalParentConfigPath = path.join(currentPath, parentConfigPath);
+    const parentProject = ts.createProject(finalParentConfigPath);
+
+    const parentConfig = getFinalTsConfig(parentProject.rawConfig, parentProject.projectDirectory);
+    const { extends: _extends, ...rest } = config;
+    return merge(parentConfig, rest);
+  }
+  return config;
+}
+
+function getTsConfig() {
+  return getFinalTsConfig(tsProject.rawConfig, tsProject.projectDirectory)
 }
 
 const tsProject = ts.createProject(getTsconfigName());
 
 function compile() {
-  return src(getTsIncludePath(), { sourcemaps: true, since: lastRun(compile) })
+  return src(getTsConfig().include, { sourcemaps: true, since: lastRun(compile) })
     .pipe(tsProject())
     .pipe(dest('dist'));
 }
