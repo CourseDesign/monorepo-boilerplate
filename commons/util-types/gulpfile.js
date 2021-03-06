@@ -32,22 +32,23 @@ function getFinalTsConfig(config, currentPath) {
   return config;
 }
 
-function getTsConfig() {
+function getTsconfig() {
   return getFinalTsConfig(tsProject.rawConfig, tsProject.projectDirectory)
 }
 
 const tsProject = ts.createProject(getTsconfigName());
+const tsconfig = getTsconfig();
 
 function compile() {
-  return src(getTsConfig().include, { sourcemaps: true, since: lastRun(compile) })
+  return src(tsconfig.include, { sourcemaps: true, since: lastRun(compile) })
     .pipe(tsProject())
-    .pipe(dest('dist'));
+    .pipe(dest(tsconfig.compilerOptions.outDir));
 }
 
 function compression() {
-  return src('dist/**/*.js', { sourcemaps: true, since: lastRun(compression) })
+  return src(path.join(tsconfig.compilerOptions.outDir, '**/*.js'), { sourcemaps: true, since: lastRun(compression) })
     .pipe(gulpif(process.env.NODE_ENV === 'production', uglify()))
-    .pipe(dest('dist'));
+    .pipe(dest(tsconfig.compilerOptions.outDir));
 }
 
 const build = series(compile, compression);
