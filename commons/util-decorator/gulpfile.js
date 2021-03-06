@@ -32,14 +32,13 @@ function getFinalTsConfig(config, currentPath) {
   return config;
 }
 
-function getTsconfig() {
+function getTsconfig(tsProject) {
   return getFinalTsConfig(tsProject.rawConfig, tsProject.projectDirectory)
 }
 
-const tsProject = ts.createProject(getTsconfigName());
-const tsconfig = getTsconfig();
+function getTsFilenames(tsProject) {
+  const tsconfig = getTsconfig(tsProject);
 
-function getTsFilenames() {
   const { fileNames, errors } = tsProject.typescript.parseJsonConfigFileContent(
     tsconfig,
     tsProject.typescript.sys,
@@ -55,8 +54,12 @@ function getTsFilenames() {
   return fileNames;
 }
 
+const tsProject = ts.createProject(getTsconfigName());
+const tsconfig = getTsconfig(tsProject);
+const tsFilenames = getTsFilenames(tsProject);
+
 function compile() {
-  return src(getTsFilenames(), { sourcemaps: true, since: lastRun(compile) })
+  return src(tsFilenames, { sourcemaps: true, since: lastRun(compile) })
     .pipe(tsProject())
     .pipe(dest(tsconfig.compilerOptions.outDir));
 }
