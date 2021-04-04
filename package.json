@@ -7,8 +7,6 @@
     "examples/*"
   ],
   "scripts": {
-    "build:dev": "cross-env NODE_ENV=development lerna run build",
-    "build:prd": "cross-env NODE_ENV=production lerna run build",
     "build": "lerna run build",
     "lint": "lerna run lint --parallel",
     "lint:fix": "lerna run lint:fix --parallel",
