@@ -36,6 +36,7 @@
     "gulp": "^4.0.2",
     "gulp-if": "^3.0.0",
     "gulp-sourcemaps": "^3.0.0",
+    "gulp-typedoc": "^2.2.9",
     "gulp-typescript": "^5.0.1",
     "gulp-uglify": "^3.0.2",
     "husky": "^6.0.0",
@@ -46,6 +47,7 @@
     "prettier": "^2.2.1",
     "sort-package-json": "^1.49.0",
     "ts-jest": "^26.5.4",
+    "typedoc": "^0.20.36",
     "typescript": "^4.2.3"
   }
 }
