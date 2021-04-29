@@ -52,11 +52,14 @@ function compile() {
 }
 
 function document() {
+  const out = 'docs/';
+
   return tsProject.src()
     .pipe(typedoc({
-      out: "docs/",
+      out,
       name: package.name,
     }))
+    .end(() => fs.writeFileSync(path.join(out, '.nojekyll'), ''));
 }
 
 function compression() {
