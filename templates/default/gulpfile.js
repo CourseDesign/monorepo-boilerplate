@@ -7,8 +7,6 @@ const gulpif = require('gulp-if');
 const ts = require('gulp-typescript');
 const uglify = require('gulp-uglify');
 const merge = require('deepmerge')
-const typedoc = require("gulp-typedoc");
-const package = require('./package.json');
 
 function getTsconfigName() {
   if (!process.env.NODE_ENV) return 'tsconfig.json';
@@ -51,17 +49,6 @@ function compile() {
     .pipe(dest(tsconfig.compilerOptions.outDir));
 }
 
-function document() {
-  const out = 'docs/';
-
-  return tsProject.src()
-    .pipe(typedoc({
-      out,
-      name: package.name,
-    }))
-    .end(() => fs.writeFileSync(path.join(out, '.nojekyll'), ''));
-}
-
 function compression() {
   const isProduction = process.env.NODE_ENV === 'production';
 
@@ -75,4 +62,3 @@ function compression() {
 const build = series(compile, compression);
 
 exports.default = series(build);
-exports.document = document;
