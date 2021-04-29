@@ -6,6 +6,7 @@
     "build": "npm run clean && npm run compile",
     "clean": "rm -rf ./dist",
     "compile": "gulp",
+    "document": "gulp document",
     "test": "jest",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",

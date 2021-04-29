@@ -30,6 +30,7 @@ node "${scriptPath}/copy-package-element.js" "${sourcePath}/package.json" "${tar
 node "${scriptPath}/copy-package-element.js" "${sourcePath}/package.json" "${targetPath}/package.json" "scripts.build"
 node "${scriptPath}/copy-package-element.js" "${sourcePath}/package.json" "${targetPath}/package.json" "scripts.clean"
 node "${scriptPath}/copy-package-element.js" "${sourcePath}/package.json" "${targetPath}/package.json" "scripts.compile"
+node "${scriptPath}/copy-package-element.js" "${sourcePath}/package.json" "${targetPath}/package.json" "scripts.document"
 node "${scriptPath}/copy-package-element.js" "${sourcePath}/package.json" "${targetPath}/package.json" "scripts.test"
 node "${scriptPath}/copy-package-element.js" "${sourcePath}/package.json" "${targetPath}/package.json" "scripts.lint"
 node "${scriptPath}/copy-package-element.js" "${sourcePath}/package.json" "${targetPath}/package.json" "scripts.lint:fix"
