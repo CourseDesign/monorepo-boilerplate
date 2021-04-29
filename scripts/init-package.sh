@@ -45,6 +45,9 @@ sh "${scriptPath}/set-up-lint.sh" "${rootPath}" "${packagePath}"
 # jest 세팅
 sh "${scriptPath}/set-up-jest.sh" "${rootPath}" "${packagePath}"
 
+# typedoc 세팅
+sh "${scriptPath}/set-up-typedoc.sh" "${rootPath}" "${packagePath}"
+
 # package.json 수정
 sh "${scriptPath}/add-default-script-in-package.sh" "${templatePath}" "${packagePath}" "${scriptPath}"
 
@@ -54,22 +57,16 @@ echo "⚙️ set up default file"
 cp -r "${templatePath}/lib" "${packagePath}"
 cp -r "${templatePath}/test" "${packagePath}"
 
-echo "✅ Finish"
-
 # npm ignore
 echo "⚙️ copy npm ignore"
 
 cp "${rootPath}"/.npmignore "${packagePath}"
-
-echo "✅ Finish"
 
 # git
 echo "⚙️ copy git ignore"
 
 cp "${rootPath}"/.gitignore "${packagePath}"
 git add .
-
-echo "✅ Finish"
 
 echo "🎉 Finish to install ${packageName} in ${packageLocation}"
 
