@@ -8,6 +8,7 @@ const ts = require('gulp-typescript');
 const uglify = require('gulp-uglify');
 const merge = require('deepmerge')
 const typedoc = require("gulp-typedoc");
+const package = require('./package.json');
 
 function getTsconfigName() {
   if (!process.env.NODE_ENV) return 'tsconfig.json';
@@ -54,7 +55,7 @@ function document() {
   return tsProject.src()
     .pipe(typedoc({
       out: "docs/",
-      name: process.title,
+      name: package.name,
     }))
 }
 
